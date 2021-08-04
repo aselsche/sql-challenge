@@ -1,0 +1,84 @@
+﻿-- Set up Table Schema --
+
+--Departments
+DROP TABLE IF EXISTS departments cascade;
+CREATE TABLE "departments" (
+    "dept_no" VARCHAR(10)   NOT NULL,
+    "dept_name(30)" VARCHAR   NOT NULL,
+    CONSTRAINT "pk_departments" PRIMARY KEY (
+        "dept_no"
+     )
+);
+SELECT * FROM departments;
+
+
+--Department employees
+DROP TABLE IF EXISTS dept_emp cascade;
+CREATE TABLE "dept_emp" (
+    "emp_no" INTEGER   NOT NULL,
+    "dept_no" VARCHAR   NOT NULL
+);
+SELECT * FROM dept_emp;
+
+--Department Manager
+DROP TABLE IF EXISTS dept_manager cascade;
+CREATE TABLE "dept_manager" (
+    "dept_no" VARCHAR(30)   NOT NULL,
+    "emp_no" INTEGER   NOT NULL
+);
+SELECT * FROM dept_manager;
+
+--Employees
+DROP TABLE IF EXISTS employees cascade;
+CREATE TABLE "employees" (
+    "emp_no" INTEGER   NOT NULL,
+    "emp_title_id" VARCHAR(10)   NOT NULL,
+    "birth_date" DATE   NOT NULL,
+    "first_name" VARCHAR(30)   NOT NULL,
+    "last_name" VARCHAR(30)   NOT NULL,
+    "sex" VARCHAR(5)   NOT NULL,
+    "hire_date" DATE   NOT NULL,
+    CONSTRAINT "pk_employees" PRIMARY KEY (
+        "emp_no"
+     )
+);
+SELECT * FROM employees;
+
+--Salaries
+DROP TABLE IF EXISTS salaries cascade;
+CREATE TABLE "salaries" (
+    "emp_no" INTEGER   NOT NULL,
+    "salary" INTEGER   NOT NULL
+);
+SELECT * FROM salaries;
+
+--Titles
+DROP TABLE IF EXISTS titles cascade;
+CREATE TABLE "titles" (
+    "title_id" VARCHAR(10)   NOT NULL,
+    "title" VARCHAR(30)   NOT NULL,
+    CONSTRAINT "pk_titles" PRIMARY KEY (
+        "title_id"
+     )
+);
+SELECT * FROM titles;
+
+
+ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "employees" ("emp_no");
+
+ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
+REFERENCES "departments" ("dept_no");
+
+ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_dept_no" FOREIGN KEY("dept_no")
+REFERENCES "departments" ("dept_no");
+
+ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "employees" ("emp_no");
+
+ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title_id" FOREIGN KEY("emp_title_id")
+REFERENCES "titles" ("title_id");
+
+ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "employees" ("emp_no");
+
