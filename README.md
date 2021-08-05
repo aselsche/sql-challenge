@@ -33,8 +33,10 @@ My goal was to generate a visualization of the above data which I want to presen
 By storing the password and username in the config, I was able to import the data into pandas.
 
 2. In order to visualize the most common salary ranges for employees, a histogram was used. Most comon salary range is between $40,000 - $60,000; th min being $40,000 and max being $129,492.
+![image](https://user-images.githubusercontent.com/84043141/128399604-05b22b29-80b3-4e8e-a0a2-59569309c9e4.png)
 
 
 3. Then, a bar chart of average salaries by title was created to visualize the salaries by professional titles. As you can see the technical leaders and the managers are highest paying positions.
+![image](https://user-images.githubusercontent.com/84043141/128399580-fd73b610-6d71-4401-8318-bb1deff7dabb.png)
 
 As I examined the data, I was confident that the dataset was fake. So looked up my employee ID and found that my name was April Foolsday :). 
